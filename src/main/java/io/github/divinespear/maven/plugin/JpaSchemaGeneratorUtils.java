@@ -127,6 +127,10 @@ final class JpaSchemaGeneratorUtils {
                 public int getDriverMinorVersion() {
                     return 0;
                 }
+                @Override
+                public String getSQLKeywords() {
+                    return null;
+                }
 
                 @Override
                 public int getDriverMajorVersion() {
@@ -136,6 +140,10 @@ final class JpaSchemaGeneratorUtils {
                 @Override
                 public String getDatabaseName() {
                     return productName;
+                }
+                @Override
+                public String getDatabaseVersion() {
+                    return "5.7";
                 }
 
                 @Override
@@ -148,7 +156,7 @@ final class JpaSchemaGeneratorUtils {
                     return majorVersion;
                 }
             };
-            Dialect detectedDialect = StandardDialectResolver.INSTANCE.resolveDialect(info);
+            Dialect detectedDialect = new StandardDialectResolver().resolveDialect(info);
             dialect = detectedDialect.getClass().getName();
         }
         if (dialect != null) {
@@ -157,7 +165,7 @@ final class JpaSchemaGeneratorUtils {
         }
 
         if (!isDatabaseTarget(mojo) && StringUtils.isEmpty(mojo.getJdbcUrl())) {
-            map.put(org.hibernate.jpa.AvailableSettings.SCHEMA_GEN_CONNECTION,
+            map.put(AvailableSettings.HBM2DDL_CONNECTION,
                     new ConnectionMock(mojo.getDatabaseProductName(),
                                        mojo.getDatabaseMajorVersion(),
                                        mojo.getDatabaseMinorVersion()));

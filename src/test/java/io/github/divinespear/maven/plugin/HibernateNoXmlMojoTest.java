@@ -20,8 +20,8 @@ package io.github.divinespear.maven.plugin;
  */
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.anyOf;
-import static org.junit.Assert.assertThat;
 
 import java.io.File;
 import java.sql.Connection;
@@ -30,20 +30,20 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class HibernateNoXmlMojoTest
         extends AbstractSchemaGeneratorMojoTest {
 
-    @Before
+    @BeforeEach
     @Override
     protected void setUp() throws Exception {
         super.setUp();
     }
 
-    @After
+    @AfterEach
     @Override
     protected void tearDown() throws Exception {
         super.tearDown();
@@ -80,7 +80,7 @@ public class HibernateNoXmlMojoTest
      * @throws Exception
      *             if any exception raises
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGenerateDatabaseUsingHibernate() throws Exception {
         // delete database if exists
         File databaseFile = new File(getBasedir(),

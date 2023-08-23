@@ -1,24 +1,24 @@
 package io.github.divinespear.maven.plugin;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-
 import java.io.File;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class Issue10Test
         extends AbstractSchemaGeneratorMojoTest {
 
-    @Before
+    @BeforeEach
     @Override
     protected void setUp() throws Exception {
         super.setUp();
     }
 
-    @After
+    @AfterEach
     @Override
     protected void tearDown() throws Exception {
         super.tearDown();

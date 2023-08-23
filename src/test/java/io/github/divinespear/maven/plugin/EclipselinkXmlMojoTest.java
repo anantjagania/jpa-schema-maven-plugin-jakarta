@@ -8,9 +8,9 @@ package io.github.divinespear.maven.plugin;
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -19,31 +19,32 @@ package io.github.divinespear.maven.plugin;
  * under the License.
  */
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.anyOf;
-import static org.junit.Assert.assertThat;
-
 import java.io.File;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.anyOf;
 
 public class EclipselinkXmlMojoTest
-        extends AbstractSchemaGeneratorMojoTest {
+  extends AbstractSchemaGeneratorMojoTest {
 
-    @Before
+    @BeforeEach
     @Override
     protected void setUp() throws Exception {
         super.setUp();
     }
 
-    @After
+    @AfterEach
     @Override
     protected void tearDown() throws Exception {
         super.tearDown();
@@ -51,11 +52,10 @@ public class EclipselinkXmlMojoTest
 
     /**
      * Simple schema generation test for script using EclipseLink
-     * 
-     * @throws Exception
-     *             if any exception raises
+     *
+     * @throws Exception if any exception raises
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGenerateScriptUsingEclipseLink() throws Exception {
         final File pomfile = this.getPomFile("target/test-classes/unit/eclipselink-simple-script-test");
 
@@ -77,9 +77,8 @@ public class EclipselinkXmlMojoTest
 
     /**
      * Simple schema generation test for script using EclipseLink
-     * 
-     * @throws Exception
-     *             if any exception raises
+     *
+     * @throws Exception if any exception raises
      */
     @Test
     public void testGenerateScriptUsingEclipseLinkFormatted() throws Exception {
@@ -103,15 +102,14 @@ public class EclipselinkXmlMojoTest
 
     /**
      * Simple schema generation test for database using EclipseLink
-     * 
-     * @throws Exception
-     *             if any exception raises
+     *
+     * @throws Exception if any exception raises
      */
     @Test
     public void testGenerateDatabaseUsingEclipseLink() throws Exception {
         // delete database if exists
         File databaseFile = new File(getBasedir(),
-                                     "target/test-classes/unit/eclipselink-simple-database-test/target/test.h2.db");
+          "target/test-classes/unit/eclipselink-simple-database-test/target/test.h2.db");
         if (databaseFile.exists()) {
             databaseFile.delete();
         }
@@ -123,8 +121,8 @@ public class EclipselinkXmlMojoTest
 
         // database check
         Connection connection = DriverManager.getConnection(mojo.getJdbcUrl(),
-                                                            mojo.getJdbcUser(),
-                                                            mojo.getJdbcPassword());
+          mojo.getJdbcUser(),
+          mojo.getJdbcPassword());
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = null;

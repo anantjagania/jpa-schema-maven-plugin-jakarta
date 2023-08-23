@@ -38,8 +38,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import javax.persistence.Persistence;
-import javax.persistence.spi.PersistenceProvider;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.spi.PersistenceProvider;
 
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.repository.ArtifactRepository;

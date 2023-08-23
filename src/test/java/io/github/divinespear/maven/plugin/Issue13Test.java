@@ -1,7 +1,7 @@
 package io.github.divinespear.maven.plugin;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -24,26 +24,26 @@ import static org.junit.Assert.assertThat;
 
 import java.io.File;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 public class Issue13Test
         extends AbstractSchemaGeneratorMojoTest {
 
-    @Before
+    @BeforeEach
     @Override
     protected void setUp() throws Exception {
         super.setUp();
     }
 
-    @After
+    @AfterEach
     @Override
     protected void tearDown() throws Exception {
         super.tearDown();
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testShouldDefaultLineSeparatorIsSameAsSystem() throws Exception {
         final File pomfile = this.getPomFile("target/test-classes/unit/issue-13", "pom-default.xml");
         final JpaSchemaGeneratorMojo mojo = this.getGenerateMojo(pomfile);
